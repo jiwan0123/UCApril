@@ -23,7 +23,7 @@ public class ItemSpawner : MonoBehaviour
 
     private IEnumerator SpawnItem() //아이템 생성 코루틴 함수 GameObject clone 
     {
-        while ( true)
+        while ( true )
         {
             GameObject clone = Instantiate(itemPrefab); // clone = 아이템 프리팹
             Item item = clone.GetComponent<Item>(); // item = 위 clone에 Item 컴포넌트를 준 것
