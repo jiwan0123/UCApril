@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private int wayPointCount; //Æ÷ÀÎÆ® °³¼ö
-    private Transform[] wayPoints;// Æ÷ÀÎÆ® Á¤º¸
-    private int currentIndex = 0;//¸ñÇ¥ÀÎµ¦½º (¾ÆÀÌÅÛÀÌ »ı¼ºµÉ Æ÷ÀÎÆ®¸®½ºÆ® Áß ÀÎµ¦½º¸¦ ·£´ıÀ¸·Î µ¹·Á¼­ ¾ÆÀÌÅÛ »ı¼ºÇÒ ¿¹Á¤) //¾ÆÀÌÅÛÀ» µ¿ÀÏÇÑ À§Ä¡¿¡ »ı¼ºÇÏÁö ¾Ê±âÀ§ÇØ ¸¸µç º¯¼ö
+    private int wayPointCount; //í¬ì¸íŠ¸ ê°œìˆ˜
+    private Transform[] wayPoints;// í¬ì¸íŠ¸ ì •ë³´
+    private int currentIndex = 0;//ëª©í‘œì¸ë±ìŠ¤ (ì•„ì´í…œì´ ìƒì„±ë  í¬ì¸íŠ¸ë¦¬ìŠ¤íŠ¸ ì¤‘ ì¸ë±ìŠ¤ë¥¼ ëœë¤ìœ¼ë¡œ ëŒë ¤ì„œ ì•„ì´í…œ ìƒì„±í•  ì˜ˆì •)
 
-    public void setup(Transform[] wayPoints)
+    public void Setup(Transform[] wayPoints)
     {
-        //¾ÆÀÌÅÛÀÇ »ı¼ºµÉ Æ÷ÀÎÆ® Á¤º¸ ¼³Á¤
+        //ì•„ì´í…œì˜ ìƒì„±ë  í¬ì¸íŠ¸ ì •ë³´ ì„¤ì •
         wayPointCount = wayPoints.Length;
-        this.wayPoints = new Transform[wayPointCount]; //Æ÷ÀÎÆ® °³¼ö¸¸Å­ ¸Ş¸ğ¸® °ø°£ »ı¼º
+        this.wayPoints = new Transform[wayPointCount]; //í¬ì¸íŠ¸ ê°œìˆ˜ë§Œí¼ ë©”ëª¨ë¦¬ ê³µê°„ ìƒì„±
         this.wayPoints = wayPoints;
 
-        //currentIndex(¸ñÇ¥ÀÎµ¦½º)¸¦ ·£´ıÀ¸·Î ¼³Á¤
+        //currentIndex(ëª©í‘œì¸ë±ìŠ¤)ë¥¼ ëœë¤ìœ¼ë¡œ ì„¤ì •
         currentIndex = Random.Range(0, wayPointCount);
         
-        //¾ÆÀÌÅÛÀÇ À§Ä¡¸¦ ¿şÀÌÆ÷ÀÎÆ® À§Ä¡·Î ¼³Á¤
+        //ì•„ì´í…œì˜ ìœ„ì¹˜ë¥¼ ì›¨ì´í¬ì¸íŠ¸ ìœ„ì¹˜ë¡œ ì„¤ì •
         transform.position = wayPoints[currentIndex].position;
 
-        //ÀÌÈÄ ÄÚ·çÆ¾ »ç¿ëÇÏ¿© ¾ÆÀÌÅÛ È¿°ú¸¦ Àû¿ëÇÏ¸é µÉµíÇÔ
+        
     }
 }
+

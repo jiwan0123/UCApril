@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    //[SerializeField]ÀÇ °æ¿ì publicÀ» »ç¿ëÇÏÁö ¾Ê°í Á¤º¸¸¦ Àº´ĞÈ­ ½ÃÅ°¸é¼­ À¯´ÏÆ¼ÀÇ ÀÎ½ºÆåÅÍ¸¦ »ç¿ëÇÏ¿© Á¤º¸¸¦ ¹Ù·Î ³Ö¾îÁÙ ¼ö ÀÖ´Ù.
-    //¹İ´ë·Î publicÀ» »ç¿ëÇÏ¸é¼­[HideInInspector]¸¦ »ç¿ëÇÏ¸é ÀÎ½ºÆåÅÍ¿¡¼­ Àû¿ëÇÒ ¼ö ¾øµµ·Ï ¸¸µé¾î ÁÙ ¼ö ÀÖ´Ù.
-    //Å¬·¡½º À­ÁÙ¿¡ [Serializable]À» ºÙÀÌ¸é Å¬·¡½º°´Ã¼¿¡µµ ÀÎ½ºÆåÅÍ¿¡ °ªÀ» ÁöÁ¤ÇÒ ¼ö ÀÖ°ÔµÈ´Ù.
+    //[SerializeField]ì˜ ê²½ìš° publicì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ì •ë³´ë¥¼ ì€ë‹‰í™” ì‹œí‚¤ë©´ì„œ ìœ ë‹ˆí‹°ì˜ ì¸ìŠ¤í™í„°ë¥¼ ì‚¬ìš©í•˜ì—¬ ì •ë³´ë¥¼ ë°”ë¡œ ë„£ì–´ì¤„ ìˆ˜ ìˆë‹¤.
+    //ë°˜ëŒ€ë¡œ publicì„ ì‚¬ìš©í•˜ë©´ì„œ[HideInInspector]ë¥¼ ì‚¬ìš©í•˜ë©´ ì¸ìŠ¤í™í„°ì—ì„œ ì ìš©í•  ìˆ˜ ì—†ë„ë¡ ë§Œë“¤ì–´ ì¤„ ìˆ˜ ìˆë‹¤.
+    //í´ë˜ìŠ¤ ìœ—ì¤„ì— [Serializable]ì„ ë¶™ì´ë©´ í´ë˜ìŠ¤ê°ì²´ì—ë„ ì¸ìŠ¤í™í„°ì— ê°’ì„ ì§€ì •í•  ìˆ˜ ìˆê²Œëœë‹¤.
     [SerializeField]
-    private GameObject itemPrefab; // ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
+    private GameObject itemPrefab; // ì•„ì´í…œ í”„ë¦¬íŒ¹
     [SerializeField]
-    private float itemspawnTime; // ¾ÆÀÌÅÛ »ı¼º ÁÖ±â
-    [SerializeField] // ¿şÀÌÆ÷ÀÎÆ® ¸®½ºÆ®¸¦ ÀÎ½ºÆåÅÍ¿¡ ¹Ù·Î ³Ö¾îÁÙ ¼ö ÀÖÀ½
-    private Transform[] wayPoints; // ÇöÀç ¸ÊÀÇ Æ÷ÀÎÆ®
+    private float itemspawnTime; // ì•„ì´í…œ ìƒì„± ì£¼ê¸°
+    [SerializeField] // ì›¨ì´í¬ì¸íŠ¸ ë¦¬ìŠ¤íŠ¸ë¥¼ ì¸ìŠ¤í™í„°ì— ë°”ë¡œ ë„£ì–´ì¤„ ìˆ˜ ìˆìŒ
+    private Transform[] wayPoints; // í˜„ì¬ ë§µì˜ í¬ì¸íŠ¸
 
     private void Awake()
     {
-        // ¾ÆÀÌÅÛ »ı¼º ÄÚ·çÆ¾
-        // ÄÚ·çÆ¾À» »ç¿ëÇÏ¿© ºñµ¿±âÀûÀ¸·Î Ã³¸®
+        // ì•„ì´í…œ ìƒì„± ì½”ë£¨í‹´
+        // ì½”ë£¨í‹´ì„ ì‚¬ìš©í•˜ì—¬ ë¹„ë™ê¸°ì ìœ¼ë¡œ ì²˜ë¦¬
         StartCoroutine("SpawnItem");
     }
 
-    private IEnumerator SpawnItem() //¾ÆÀÌÅÛ »ı¼º ÄÚ·çÆ¾ ÇÔ¼ö GameObject clone 
+    private IEnumerator SpawnItem() //ì•„ì´í…œ ìƒì„± ì½”ë£¨í‹´ í•¨ìˆ˜
     {
         while ( true )
         {
-            GameObject clone = Instantiate(itemPrefab); // clone = ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
-            Item item = clone.GetComponent<Item>(); // item = À§ clone¿¡ Item ÄÄÆ÷³ÍÆ®¸¦ ÁØ °Í
-            //ItemÀÇ ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿ÓÀ¸´Ï setupÇÔ¼ö¸¦ »ç¿ëÇÒ ¼ö ÀÖÀ½
-            item.setup(wayPoints);
-            yield return new WaitForSeconds(itemspawnTime); //¾ÆÀÌÅÛ »ı¼ºÁÖ±â ¸¸Å­ ±â´Ù·È´Ù°¡ Á¦¾î±Ç ¹İÈ¯
+            GameObject clone = Instantiate(itemPrefab); // clone = ì•„ì´í…œ í”„ë¦¬íŒ¹
+            Item item = clone.GetComponent<Item>(); // item = ìœ„ cloneì— Item ì»´í¬ë„ŒíŠ¸ë¥¼ ì¤€ ê²ƒ
+            //Itemì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì™“ìœ¼ë‹ˆ setupí•¨ìˆ˜ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
+            item.Setup(wayPoints);
+            yield return new WaitForSeconds(itemspawnTime); //ì•„ì´í…œ ìƒì„±ì£¼ê¸° ë§Œí¼ ê¸°ë‹¤ë ¸ë‹¤ê°€ ì œì–´ê¶Œ ë°˜í™˜
         }
     }
 }
