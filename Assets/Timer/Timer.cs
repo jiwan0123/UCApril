@@ -2,49 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    float Sec;
     public int Min;
-    
+    float Sec;
+    float second;
+    bool isTimeUpdate = true;
 
-    [SerializeField] public TMP_Text TimerText;
-    
+    public Text TimerText;
+
     void Start()
     {
-        TimerText.text = Sec.ToString();
+        second = Min * 60;
     }
 
-    
     public void Update()
     {
-        TimerGo();
+
+        if (isTimeUpdate)
+        {
+            TimerGo();
+        }
+
     }
 
     void TimerGo()
     {
-        
-        
-            Sec -= Time.deltaTime;
-            
-            TimerText.text = string.Format("{0:D2}:{1:D2}", Min, (int)Sec);
-            if((int)Sec <=0 && Min >= 0)
-            {
-                 Sec = 60;
-                 Min --;
-                if(Min <= -1 )
-                {
-                    Sec = 0;
-                    Min = 0;
-                    
-                }
-            }
 
-        
-        
+        Sec = (int)second % 60;
+        Min = (int)second / 60;
+
+        second -= Time.deltaTime;
+
+        TimerText.text = $"{Min}:{Sec}";
+
+        if (second < 0)
+            isTimeUpdate = false;
+
     }
 
-    
 }
