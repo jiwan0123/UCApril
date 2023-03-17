@@ -21,4 +21,6 @@ public class FoxSpawner : MonoBehaviour
 
         fox.Setup(foxPoints);
     }
+
+
 }
