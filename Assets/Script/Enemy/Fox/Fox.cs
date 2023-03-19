@@ -19,7 +19,8 @@ public class Fox : MonoBehaviour
         enemyMovement = GetComponent<EnemyMovement>();
 
         this.Target = Target;
-        enemyMovement.Target = this.Target;
+        enemyMovement.TargetSet(this.Target);
+        //enemyMovement.Target = this.Target;
 
 
         currentIndex = Random.Range(0, foxPoints.Length);
