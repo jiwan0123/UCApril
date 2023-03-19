@@ -5,11 +5,11 @@ using UnityEngine;
 public class FoxSpawner : MonoBehaviour
 {
     [SerializeField]
+    private Transform Target;
+    [SerializeField]
     private GameObject foxPrefab; //여우 프리팹
     [SerializeField]
     private Transform[] foxPoints; //여우 생성될 여우의 포인트 정보
-
-    private GameObject fox;
 
     private void Awake()
     {
@@ -18,10 +18,11 @@ public class FoxSpawner : MonoBehaviour
 
     private void SpawnFox()
     {
+        
         GameObject firstFox = Instantiate(foxPrefab);
         Fox fox = firstFox.GetComponent<Fox>();
 
-        fox.Setup(foxPoints);
+        fox.Setup(foxPoints, Target);
     }
 
 
