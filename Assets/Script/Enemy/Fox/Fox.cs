@@ -9,17 +9,17 @@ public class Fox : MonoBehaviour
     private int currentIndex = 0;//목표인덱스
 
     private EnemyMovement enemyMovement;
-
-    private Transform Target;
+    [SerializeField]
+    private GameObject Target;
     
-    public void Setup(Transform[] foxPoints, Transform Target)
+    public void Setup(Transform[] foxPoints, GameObject Target)
     {
 
 
         enemyMovement = GetComponent<EnemyMovement>();
 
         this.Target = Target;
-        enemyMovement.Target = Target;
+        enemyMovement.Target = this.Target;
 
 
         currentIndex = Random.Range(0, foxPoints.Length);

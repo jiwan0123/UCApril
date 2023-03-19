@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform Target;
+    public GameObject Target;
     public float UpdateSpeed = 0.1f;
 
     private NavMeshAgent Agent;
@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        
     }
 
     private void Start()
@@ -28,7 +29,6 @@ public class EnemyMovement : MonoBehaviour
         while (enabled)
         {
             Agent.SetDestination(Target.transform.position);
-
             yield return wait;
         }
     }

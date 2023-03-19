@@ -5,7 +5,7 @@ using UnityEngine;
 public class FoxSpawner : MonoBehaviour
 {
     [SerializeField]
-    private Transform Target;
+    private GameObject Target;
     [SerializeField]
     private GameObject foxPrefab; //여우 프리팹
     [SerializeField]
