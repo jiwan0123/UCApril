@@ -6,7 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform Target;
+    
+    private GameObject Target;
     public float UpdateSpeed = 0.1f;
 
     private NavMeshAgent Agent;
@@ -14,11 +15,13 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        
     }
 
     private void Start()
     {
         StartCoroutine(FollowTarget());
+        Debug.Log(Vector3.Distance(transform.position, Target.transform.position));
     }
 
     private IEnumerator FollowTarget()
@@ -27,9 +30,21 @@ public class EnemyMovement : MonoBehaviour
 
         while (enabled)
         {
-            Agent.SetDestination(Target.transform.position);
-
+            if(Vector3.Distance(transform.position, Target.transform.position)<10)
+            {
+                Agent.speed = 3.5f;
+                Agent.SetDestination(Target.transform.position);
+            }
+            else
+            {
+                Agent.speed = 0f;
+            }
             yield return wait;
         }
+    }
+
+    public void TargetSet(GameObject Target)
+    {
+        this.Target = Target;
     }
 }
